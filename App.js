@@ -6,109 +6,153 @@
  * @flow
  */
 
-import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import React, {Component} from 'react';
+import {Text,Dimensions, SafeAreaView, ScrollView, StatusBar, View, } from 'react-native';
+import AutoSizeSheet from 'react-native-autosize-style-sheet';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+export default class App extends Component {
+    fillW = Math.round(Dimensions.get('window').width);
 
-const App: () => React$Node = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-};
+    render() {
+      return (
+        <>
+          <StatusBar barStyle="dark-content"/>
+          <SafeAreaView style={styles.flex}>
+            <ScrollView style={styles.flex}>
+              <Text>正常style 增加android/ios平台分别编写</Text>
+              <View style={styles.hor}>
+                <View style={styles.styles1View1}/>
+                <View style={styles.styles1View2}/>
+                <View style={styles.styles1View3}/>
+              </View>
+              <Text>设计图为宽度750px 写法增加android/ios平台分别编写</Text>
+              <View style={styles.ver}>
+                <View style={this.styles2.styles2View1}/>
+                <View style={this.styles2.styles2View2}/>
+                <View style={this.styles2.styles2View3}/>
+              </View>
+              <Text style={styles.text}>百分比写法 写法增加android/ios平台分别编写</Text>
+              <View style={styles.ver}>
+                <View style={this.styles3.styles3View1}/>
+                <View style={this.styles3.styles3View2}/>
+                <View style={this.styles3.styles3View3}/>
+              </View>
 
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+
+            </ScrollView>
+          </SafeAreaView>
+        </>
+      );
+    }
+
+    /**
+     * 参数 :
+     * styles: S, 需要编写的style
+     *
+     * screenWidth: number = 0, 动态获取 设备的屏幕的的宽度  设置为0
+     * 则默认不进行适配 走默认的正常StyleSheet的规则 增
+     * 加了 增加 android/ios平台 分别编写
+     *
+     * designWidth: number = 750 设计图纸的宽度 不用自己计算大小 直接写设计图的尺寸
+     *
+     * eg1 : 设计图宽度为750px View A  width 50px height 100px
+     * A 的 style{ width:50, height:100} 出来的样子就是 设计图的设计比例显示
+     *
+     * eg2 :  designWidth=100  百分比布局  style{ width:50, height:100}
+     * 这个是宽度占屏幕的50% 高度为一个屏幕的宽度的100%
+     *
+     */
+    styles2 = AutoSizeSheet.create({
+      styles2View1: {
+        width: 60,
+        height: 80,
+        android: {
+          backgroundColor: 'red'
+        },
+        ios: {
+          backgroundColor: 'green'
+        }
+      },
+      styles2View2: {
+        width: 300,
+        height: 80,
+        backgroundColor: 'green'
+      },
+      styles2View3: {
+        width: 750,
+        height: 80,
+        backgroundColor: 'red'
+      },
+    }, this.fillW, 750)
+
+
+    styles3 = AutoSizeSheet.create({
+      styles3View1: {
+        width: 30,
+        height: 20,
+        android: {
+          backgroundColor: 'red'
+        },
+        ios: {
+          backgroundColor: 'green'
+        }
+      },
+      styles3View2: {
+        width: 50,
+        height: 20,
+        backgroundColor: 'green'
+      },
+      styles3View3: {
+        width: 100,
+        height: 20,
+        backgroundColor: 'red'
+      },
+    }, this.fillW, 100);
+
+}
+/**
+ * 支持正常StyleSheet 有提示编写style type的提示
+ * 增加 android/ios平台 分别编写
+ */
+const styles = AutoSizeSheet.create({
+  fill: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: 'white'
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
+  text:{
+    marginTop: 20,
   },
-  body: {
-    backgroundColor: Colors.white,
+  hor: {
+    flexDirection: 'row',
+    backgroundColor: 'white'
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  ver: {
+    flexDirection: 'column',
+    backgroundColor: 'white'
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
+  styles1View1: {
+    margin: 5,
+    width: 60,
+    height: 60,
+    android: {
+      backgroundColor: 'red'
+    },
+    ios: {
+      backgroundColor: 'green'
+    }
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
+  styles1View2: {
+    margin: 5,
+    width: 80,
+    height: 80,
+    backgroundColor: 'green'
   },
-  highlight: {
-    fontWeight: '700',
+  styles1View3: {
+    margin: 5,
+    width: 100,
+    height: 100,
+    backgroundColor: 'red'
   },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
+
 });
-
-export default App;
