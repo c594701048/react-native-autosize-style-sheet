@@ -57,7 +57,7 @@
 ### `百分比写法` 
  eg2 :  designWidth=100  百分比布局  style{ width:50, height:100}
  这个是宽度占屏幕的50% 高度为一个屏幕的宽度的100%
-  ```
+  ```js
      styles3 = AutoSizeSheet.create({
        styles3View1: {
          width: 30,
@@ -167,7 +167,5 @@
     'top',
     'width'
   ```
-  
-
 ## Licensed
   MIT License
