@@ -13,7 +13,7 @@
 ### `设计图写法`
  eg1 : 设计图宽度为750px View A  width 50px height 100px
  A 的 style{ width:50, height:100} 出来的样子就是 设计图的设计比例显示
-  ```
+  ```js
   /**
       * 参数 :
       * styles: S, 需要编写的style
@@ -82,7 +82,7 @@
      }, this.fillW, 100);
   ```
 ### `正常写法` 
-  ```
+  ```js
     /**
      * 支持正常StyleSheet 有提示编写style type的提示
      * 增加 android/ios平台 分别编写
@@ -167,6 +167,7 @@
     'top',
     'width'
   ```
+  
 
 ## Licensed
   MIT License
