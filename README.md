@@ -4,7 +4,7 @@
 
 ## `AutoSizeSheet` 使用
   1. 使用npm：`npm install react-native-auto-size --save`<br>
-  使用yarn：`yarn add react-native-auto-size
+  使用yarn：`yarn add react-native-auto-size`
   
 ### `效果图片 `
 <img src="https://github.com/c594701048/react-native-autosize-style-sheet/blob/master/Screenshot_1579664623.png" alt="效果图片" title="效果图片" width="360" height="729">
